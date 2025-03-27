@@ -1,0 +1,478 @@
+document.getElementById('adminLogin').addEventListener('click', function () {
+    const adminKey = prompt('Enter Admin Key:');
+
+    fetch('/Admin/ValidateKey', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ adminKey: adminKey })
+    })
+    .then(response => response.json())
+    .then(data => { 
+        if (data.success) {
+            window.location.href = '/Login/AdminLogin';
+        } else {
+            alert('Invalid admin key. Please try again.');
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+
+
+1. User Authentication and Authorization:
+Secure login with credentials (username/email and password).
+
+Role-based access control (to ensure the user only accesses permitted functionalities).
+
+2. Policy Management:
+View Policies: Display active and expired policies along with their details.
+
+Renew Policies: Provide options for users to renew their insurance policies.
+
+Purchase New Policies: Allow users to browse and purchase new policies.
+
+3. Billing Operations:
+View Bills: Users can check outstanding bills or previous payment history.
+
+Make Payments: Support multiple payment methods (e.g., credit card, bank transfer, UPI).
+
+Set Up Automatic Payments: Option for recurring premium payments.
+
+Generate Billing Statements: Provide downloadable billing summaries for record-keeping.
+
+4. Claims Operations:
+File Claims: Submit claims with required details and supporting documents.
+
+Track Claims: Monitor the status of claims (e.g., under review, approved, rejected).
+
+Resolve Claim Queries: Support communication with the admin team for clarifications.
+
+5. Profile Management:
+Update personal details such as address, phone number, email, or payment preferences.
+
+6. Notifications and Alerts:
+Remind users about premium due dates, renewal deadlines, and claim updates.
+
+Push alerts for policy modifications or new offers.
+
+7. Reporting and Insights:
+View usage statistics (e.g., premium payments made, total claims submitted).
+
+Generate user-specific summaries or reports.
+
+8. Help and Support:
+Access FAQs and user guides for software usage.
+
+Provide options for live chat, email support, or a dedicated customer care line.
+
+9. Document Management:
+Upload necessary documents like identification proofs, medical reports (for health insurance), or accident photos (for car insurance).
+
+Access a secure repository for downloaded policy documents, bills, and claim receipts.
+
+10. Policy Upgrade Suggestions:
+Suggest tailored upgrades or add-ons based on user preferences and policy utilization.
+
+These operations ensure that the user's needs are met efficiently while providing them with the tools to manage their insurance seamlessly. Let me know if you’d like me to elaborate further or focus on specific aspects!	
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Interactive User Dashboard
+Customizable Interface: Allow users to customize their dashboard with widgets for policies, claims, and payments.
+
+Visual Analytics: Include charts and graphs to show premium trends, claim history, and remaining coverage.
+
+2. Enhanced Policy Management
+Side-by-Side Comparison: Provide a feature to compare existing policies with new offers to help users make informed decisions.
+
+Policy Recommendations: Suggest new policies based on user behavior, claim history, and browsing patterns.
+
+3. Advanced Payment Gateway
+One-Click Payment: Enable faster checkout with saved card or wallet details.
+
+Multiple Payment Options: Integrate UPI, net banking, and digital wallets for convenience.
+
+Payment Splitting: Allow users to divide premiums into smaller, manageable payments over time.
+
+4. AI-Powered Chatbot
+Integrate a chatbot to guide users through complex tasks, such as claim submission or policy renewal.
+
+Offer multilingual support through the chatbot for a more inclusive experience.
+
+5. Real-Time Claim Tracker
+Add a step-by-step visual timeline to show users the progress of their claims (e.g., Under Review, Approved, Settled).
+
+Include notifications for any additional documents needed.
+
+7. Progressive Web App (PWA)
+Make the software a progressive web app, so it’s accessible like a native mobile app with offline capabilities for viewing policies and documents.
+
+8. Personalized Alerts and Reminders
+Enable users to set their own alerts for premium payments, policy renewals, and claim updates.
+
+Send notifications via email and SMS in addition to the web app.
+
+9. Interactive Tutorials and Help Section
+Include guided walkthroughs for first-time users to understand how to navigate and use the software.
+
+Provide video tutorials for claims, billing, and policy selection.
+
+10. Smart FAQ System
+Incorporate a searchable FAQ section with AI-driven keyword recognition to instantly find relevant answers.
+
+
+12. Claim Simulation Tool
+Allow users to simulate potential claims to understand what they might receive in specific scenarios.
+
+13. Accessibility Features
+Include screen readers, high-contrast themes, and font adjustment settings to make the application accessible for visually impaired users.
+
+14. Reward System
+Reward users with points for timely premium payments or app usage, which can be redeemed for discounts or gifts.
+
+15. Web Notifications
+Use browser notifications for real-time updates on claims, policy renewals, or special offers.
+
+16. Policy Utilization Insights
+Show users how much of their policy has been used (e.g., percentage of health insurance coverage utilized) through visual meters.
+
+
+18. Integration with Third-Party Services
+Link with external platforms such as DigiLocker (for document storage) or government APIs for identity verification (e.g., Aadhar verification in India).
+
+19. Security Enhancements
+Two-Factor Authentication: Ensure secure login with 2FA through OTPs or authenticator apps.
+
+Activity Logs: Allow users to view their login history and other activity on the platform for transparency.
+
+20. Feedback and Analytics
+Provide users with detailed feedback after completing actions like claims submission to improve transparency.
+
+Use data analytics to offer insights on how users interact with the platform and enhance the user experience.   can this be done in a .net mvc using api and extra in it
+
+
+
+--------------------------------------------------------------------------
+
+1. Interactive User Dashboard
+Use MSSQL to store user preferences for dashboard customization (widgets for policies, claims, payments, etc.).
+
+Retrieve data dynamically from the database to generate visual analytics like charts (using tools like Chart.js or D3.js) for premium trends, claim history, and policy utilization.
+
+2. Enhanced Policy Management
+Store policies and their attributes in MSSQL, and build APIs to allow users to fetch and compare policy details.
+
+Use stored procedures or queries to recommend policies based on the user’s claim history and patterns.
+
+3. Advanced Payment Gateway
+Save payment history and preferences in MSSQL.
+
+Integrate APIs for payment gateways like Razorpay or PayPal to securely process payments.
+
+Divide premiums into installments by adding a feature in MSSQL to track payment schedules.
+
+4. AI-Powered Chatbot
+Integrate an external chatbot tool like Azure Bot Framework without storing chatbot data in the cloud; you can host logic locally.
+
+Use MSSQL to store FAQs and pre-defined responses.
+
+5. Real-Time Claim Tracker
+Design tables in MSSQL to track claim status updates step-by-step (e.g., Status, LastUpdated fields).
+
+Implement APIs to retrieve the timeline data dynamically and display progress on the dashboard.
+
+6. Document Repository
+Store uploaded files (e.g., policy documents, claim evidence) in the local file system.
+
+Save file paths in MSSQL for retrieval and user access.
+
+7. Personalized Alerts and Reminders
+Create a table in MSSQL for alerts and reminders (e.g., AlertType, UserID, DueDate).
+
+Use background jobs (via Hangfire or Quartz.NET) to send alerts through email and SMS.
+
+8. Tutorials and Help Section
+Host video tutorials on your local server and create entries in MSSQL for tutorial titles, descriptions, and file paths.
+
+Retrieve and display them dynamically in Razor Views.
+
+9. Smart FAQ System
+Store FAQs and their answers in MSSQL.
+
+Implement a searchable FAQ section by performing full-text indexing on FAQ tables.
+
+10. Claim Simulation Tool
+Use Razor Views with APIs connected to MSSQL to calculate claim scenarios dynamically based on stored policy data.
+
+Create stored procedures to perform necessary calculations.
+
+11. Accessibility Features
+Implement features like high-contrast themes and font adjustments using Razor Views without dependency on cloud services.
+
+12. Reward System
+Store reward points in MSSQL and update them based on user actions (e.g., premium payment, app usage).
+
+Enable redemption by retrieving rewards data and applying discounts during transactions.
+
+13. Web Notifications
+Use SignalR to send browser notifications to users without relying on cloud solutions.
+
+Store notification history in MSSQL for auditing.
+
+14. Policy Utilization Insights
+Calculate policy utilization metrics (e.g., percentage of coverage used) on the backend and store results in MSSQL.
+
+Display this data visually on the user dashboard.
+
+15. Integration with Third-Party Services
+APIs for third-party services like DigiLocker or Aadhar verification can work seamlessly without storing data in the cloud.
+
+16. Security Enhancements
+Use Two-Factor Authentication (2FA) via SMS or email, storing temporary OTPs in MSSQL.
+
+Maintain activity logs (e.g., login history, payment actions) in MSSQL for transparency.
+
+17. Feedback and Analytics
+Save user feedback in MSSQL and analyze it using SQL queries to generate insights into user interactions with the software.  i have done a login process for the user using System.ComponentModel.DataAnnotations;
+
+namespace demo1.Models
+{
+    public class User
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public string ProfilePictureUrl { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public bool IsProfileComplete { get; set; }
+        public bool IsApproved { get; set; }
+        public bool IsActive { get; set; }
+    }
+}
+these are the details have been given by the user when the user register and for then login purpose after this all the operations have to done in  a dashboard page , but here the registered details is not storing in a database and it need to store data in a database and then , it have to fetch the details for login purpose and after the successfull login it need to redirects to the  dashboard page and all the operations have to be taken place    in the dashboard 
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+_Layout.cshtml
+│   │   ├── _ProfilePartial.cshtml
+│   │   ├── _PolicyPartial.cshtml
+│   │   ├── _ClaimsPartial.cshtml
+│   │   ├── _BillingPartial.cshtml
+│   │   └── _DocumentsPartial.cshtml
+
+
+----
+@model IEnumerable<demo1.Models.Document>
+
+<form id="documentsForm" method="post" action="/api/user/documents">
+    <div class="mb-3">
+        <label for="filename" class="form-label">Filename</label>
+        <input type="text" class="form-control" id="filename" name="Filename" required />
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-label">Type</label>
+        <input type="text" class="form-control" id="type" name="Type" required />
+    </div>
+    <div class="mb-3">
+        <label for="uploadDate" class="form-label">Upload Date</label>
+        <input type="date" class="form-control" id="uploadDate" name="UploadDate" required />
+    </div>
+    <div class="mb-3">
+        <label for="filePath" class="form-label">File Path</label>
+        <input type="text" class="form-control" id="filePath" name="FilePath" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload Document</button>
+</form>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Filename</th>
+            <th>Type</th>
+            <th>Upload Date</th>
+            <th>File Path</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var document in Model)
+        {
+            <tr>
+                <td>@document.Filename</td>
+                <td>@document.Type</td>
+                <td>@document.UploadDate.ToString("yyyy-MM-dd")</td>
+                <td>@document.FilePath</td>
+            </tr>
+        }
+    </tbody>
+</table>
+----
+@model IEnumerable<demo1.Models.Payment>
+
+<form id="billingForm" method="post" action="/api/user/billing">
+    <div class="mb-3">
+        <label for="policyId" class="form-label">Policy ID</label>
+        <input type="number" class="form-control" id="policyId" name="PolicyId" required />
+    </div>
+    <div class="mb-3">
+        <label for="amount" class="form-label">Amount</label>
+        <input type="number" class="form-control" id="amount" name="Amount" required />
+    </div>
+    <div class="mb-3">
+        <label for="paymentDate" class="form-label">Payment Date</label>
+        <input type="date" class="form-control" id="paymentDate" name="PaymentDate" required />
+    </div>
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <input type="text" class="form-control" id="status" name="Status" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Make Payment</button>
+</form>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Policy ID</th>
+            <th>Amount</th>
+            <th>Payment Date</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var payment in Model)
+        {
+            <tr>
+                <td>@payment.PolicyId</td>
+                <td>@payment.Amount</td>
+                <td>@payment.PaymentDate.ToString("yyyy-MM-dd")</td>
+                <td>@payment.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+------
+@model IEnumerable<demo1.Models.Claim>
+
+<form id="claimsForm" method="post" action="/api/user/claims">
+    <div class="mb-3">
+        <label for="policyName" class="form-label">Policy Name</label>
+        <input type="text" class="form-control" id="policyName" name="PolicyName" required />
+    </div>
+    <div class="mb-3">
+        <label for="claimAmount" class="form-label">Claim Amount</label>
+        <input type="number" class="form-control" id="claimAmount" name="ClaimAmount" required />
+    </div>
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <input type="text" class="form-control" id="status" name="Status" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Claim</button>
+</form>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Policy Name</th>
+            <th>Claim Amount</th>
+            <th>Status</th>
+            <th>Submitted Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.PolicyName</td>
+                <td>@claim.ClaimAmount</td>
+                <td>@claim.Status</td>
+                <td>@claim.SubmittedDate.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+------
+@model IEnumerable<demo1.Models.Policy>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Policy Name</th>
+            <th>Type</th>
+            <th>Coverage Amount</th>
+            <th>Premium Amount</th>
+            <th>Expiration Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var policy in Model)
+        {
+            <tr>
+                <td>@policy.Name</td>
+                <td>@policy.Type</td>
+                <td>@policy.CoverageAmount</td>
+                <td>@policy.PremiumAmount</td>
+                <td>@policy.ExpirationDate.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+-------
+@model demo1.Models.User
+
+<form id="profileForm" method="post" action="/api/user/profile">
+    <div class="mb-3">
+        <label for="name" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="name" name="Name" value="@Model.Name" required />
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="Email" value="@Model.Email" required />
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="phone" name="Phone" value="@Model.Phone" />
+    </div>
+    <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" class="form-control" id="address" name="Address" value="@Model.Address" />
+    </div>
+    <div class="mb-3">
+        <label for="profilePictureUrl" class="form-label">Profile Picture URL</label>
+        <input type="text" class="form-control" id="profilePictureUrl" name="ProfilePictureUrl" value="@Model.ProfilePictureUrl" />
+    </div>
+    <div class="mb-3">
+        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="dateOfBirth" name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+</form>
+
+-------
+
+
+Abstract
+This project is a web-based insurance management system built using ASP.NET Core Razor Pages. The system is designed to facilitate the management of user profiles, insurance policies, claims, billing, and document uploads. It provides a user-friendly interface for both users and administrators to interact with the system, ensuring efficient and secure handling of insurance-related operations.
+
+--------
+
+Abstract:
+This project is a comprehensive web-based insurance management system built using ASP.NET Core Razor Pages. The system is designed to streamline the management of user profiles, insurance policies, claims, billing, and document uploads. It provides distinct interfaces and functionalities for both users and administrators, ensuring efficient and secure handling of insurance-related operations.
+
